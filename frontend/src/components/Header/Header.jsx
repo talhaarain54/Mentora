@@ -32,9 +32,9 @@ function Header() {
                     <a href="#contact-us" className='text-xl hover:text-gray-400 transition-colors duration-300'>
                         Contact Us
                     </a>
-                    <a href="/privacy-policy.html" target='_blank' className='text-xl hover:text-gray-400 transition-colors duration-300'>
+                    <Link to="/privacy-policy" className='text-xl hover:text-gray-400 transition-colors duration-300'>
                         Privacy Policy
-                    </a>
+                    </Link>
                 </div>
                 <div className='hidden md:block'>
                     <Link to="/mentee-login" className='bg-blue-400 pl-5 pr-5 pt-2 pb-2 rounded-lg text-lg font-semibold hover:bg-blue-500 shadow-lg shadow-blue-900'>
@@ -62,9 +62,9 @@ function Header() {
                     <a href="#contact-us" className='border-b-[0.5px] pt-1 pb-1 border-gray-500 text-xl hover:text-gray-400 transition-colors duration-300'>
                         Contact Us
                     </a>
-                    <a href="/privacy-policy.html" target='_blank' className='border-b-[0.5px] pt-1 pb-1 border-gray-500 text-xl hover:text-gray-400 transition-colors duration-300'>
+                    <Link to="/privacy-policy" className='border-b-[0.5px] pt-1 pb-1 border-gray-500 text-xl hover:text-gray-400 transition-colors duration-300'>
                         Privacy Policy
-                    </a>
+                    </Link>
                 </div>
 
             </nav>

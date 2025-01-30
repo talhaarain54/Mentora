@@ -63,11 +63,23 @@ const mentorSchema = mongoose.Schema({
             }
         }
     ],
+    meetings: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'meeting'
+        }
+    ],
+    notifications: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'notification'
+        }
+    ]
 });
 
 
-mentorSchema.methods.generateAuthToken = function() {
-    return jwt.sign({_id: this._id, role: "mentor", email: this.email}, process.env.JWT_SECRET_KEY);
+mentorSchema.methods.generateAuthToken = function () {
+    return jwt.sign({ _id: this._id, role: "mentor", email: this.email }, process.env.JWT_SECRET_KEY);
 }
 
 mentorSchema.methods.comparePassword = async function (password) {

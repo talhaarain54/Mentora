@@ -2,7 +2,7 @@ import React from 'react'
 
 function AboutUsSection() {
   return (
-    <section className='border-b-[0.5px] border-gray-500 pb-10'>
+    <section id='about-us' className='border-b-[0.5px] border-gray-500 pb-10'>
     <div className='p-8 md:pt-10 md:pb-10 md:pl-28 md:pr-28 '>
         <h1 className='text-2xl md:text-3xl lg:text-5xl text-gray-200 text-center font-semibold'>About Mentora</h1>
         <h2 className='text-2xl md:text-3xl lg:text-5xl text-center mt-4'>Connecting Mentees with Industry Leaders to Unlock Potential</h2>

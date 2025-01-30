@@ -44,7 +44,6 @@ module.exports.createMentee = async ({
     if(otherDegrees)
         newMenteeData.otherDegrees = otherDegrees;
 
-
     const newMentee = await menteeModel.create(newMenteeData);
 
     return newMentee;

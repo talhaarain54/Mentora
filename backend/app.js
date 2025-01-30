@@ -5,15 +5,19 @@ const dotenv = require("dotenv");
 dotenv.config();
 const connectDatabase = require("./db/db");
 connectDatabase();
+require("./jobs/meetingScheduler"); // meeting scheduler
 const app = express();
 const mentorRoutes = require("./routes/mentorRoutes");
 const menteeRoutes = require("./routes/menteeRoutes");
+const meetingRoutes = require("./routes/meetingRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true,
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST", "PATCH", "DELETE"]
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -24,6 +28,8 @@ app.get("/", (req, res) => {
 
 app.use("/mentor", mentorRoutes);
 app.use("/mentee", menteeRoutes);
+app.use("/meeting", meetingRoutes);
+app.use("/notification", notificationRoutes);
 
 
 

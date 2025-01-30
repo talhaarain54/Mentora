@@ -1,40 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { MenteeContext } from '../contexts/MenteeContext';
 import axios from 'axios';
-import { MentorContext } from '../contexts/MentorContext';
 
-function MentorProtectedWrapper({ children }) {
+function MenteeProtectedWrapper({ children }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { setMentor } = useContext(MentorContext);
+    const { setMentee } = useContext(MenteeContext);
     const token = localStorage.getItem("token");
 
+
     useEffect(() => {
-        if (!token) {
-            navigate('/mentor-login');
+        if (!token){
+            navigate('/mentee-login');
             return;
         }
 
-        axios.get(`${import.meta.env.VITE_BASE_URL}/mentor/get-profile`, {
+        axios.get(`${import.meta.env.VITE_BASE_URL}/mentee/get-profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
             .then((response) => {
                 if (response.status === 200) {
-                    setMentor(response.data.mentor);
+                    setMentee(response.data.mentee);
                     setLoading(false);
                 }
             })
             .catch((error) => {
                 console.error("Profile Fetch Error:", error);
                 setError(error);
-
+            
                 if (error.response) {
                     // Extract status and error message
                     const { status, data } = error.response;
-
+            
                     if (status === 401) {
                         // Unauthorized access (invalid or expired token)
                         console.warn("Unauthorized access. Redirecting to login...");
@@ -58,8 +59,7 @@ function MentorProtectedWrapper({ children }) {
                     console.error("Unexpected error:", error.message);
                     alert("Something went wrong. Please try again later.");
                 }
-            });
-
+            });            
     }, []);
 
     if (error)
@@ -77,4 +77,4 @@ function MentorProtectedWrapper({ children }) {
     )
 }
 
-export default MentorProtectedWrapper;
+export default MenteeProtectedWrapper

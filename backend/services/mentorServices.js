@@ -48,4 +48,3 @@ module.exports.createMentor = async ({
 
     return newMentor;
 }
-

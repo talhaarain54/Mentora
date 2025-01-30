@@ -61,8 +61,19 @@ const menteeSchema = mongoose.Schema({
                 required: true,
             }
         }
+    ],
+    meetings: [
+        { 
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'meeting'
+        }
+    ],
+    notifications: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'notification'
+        }
     ]
-
 });
 
 menteeSchema.methods.generateAuthToken = function () {

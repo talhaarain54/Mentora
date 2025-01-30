@@ -11,15 +11,15 @@ const meetingSchema = mongoose.Schema({
         ref: "mentee",
         required: true,
     },
-    MeetingTime: {
+    meetingTime: {
         type: Date,
         required: true,
-        default: Date.now,
+        default: () => new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // default time is 5 days later 
     },
     status: {
         type: String,
         required: true,
-        enum: ["request pending", "request rejected", "scheduled", "completed", "cancelled"],
+        enum: ["pending", "scheduled", "completed", "cancelled"],
     },
     feedback: {
         type: String,
@@ -30,6 +30,6 @@ const meetingSchema = mongoose.Schema({
 });
 
 
-const meetingModel = mongoose.Schema("meeting", meetingSchema);
+const meetingModel = mongoose.model("meeting", meetingSchema);
 
 module.exports = meetingModel;
