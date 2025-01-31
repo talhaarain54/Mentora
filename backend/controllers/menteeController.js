@@ -79,7 +79,7 @@ module.exports.updateProfile = async (req, res) => {
         }
 
         let hashedPassword;
-        if (newPassword.trim().length === 0) {
+        if (!newPassword) {
             hashedPassword = mentee.password;
         } else {
             hashedPassword = await menteeModel.hashPassword(newPassword);
@@ -94,7 +94,8 @@ module.exports.updateProfile = async (req, res) => {
         };
 
         const updatedMentee = await menteeModel.findByIdAndUpdate(req.mentee._id, updatedData, { new: true });
-
+        console.log("updated mentee", updatedMentee);
+        
         if (!updatedMentee) {
             return res.status(400).json({ message: "Profile update failed" });
         }

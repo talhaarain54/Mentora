@@ -38,15 +38,17 @@ function MentorEditProfilePage() {
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
         const expertiseArray = expertise.split(",").map((item) => item.trim());
-        const otherDegreesArray = [...otherDegrees, newDegrees];
+        const otherDegreesArray = [...otherDegrees, ...newDegrees];
+
         const updatedData = {
-            name,
             currentPassword,
-            newPassword,
-            yearsOfExperience,
-            expertise: expertiseArray,
-            otherDegrees: otherDegreesArray
         }
+        if(name) updatedData.name = name;
+        if(newPassword) updatedData.newPassword = newPassword;
+        if(otherDegreesArray) updatedData.otherDegrees = otherDegreesArray;
+        if(expertiseArray) updatedData.expertise = expertiseArray;
+        if(yearsOfExperience) updatedData.yearsOfExperience = yearsOfExperience;        
+        // console.log("updated data", updatedData);
         
         try {
             const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/mentor/update-profile`, 
@@ -58,6 +60,7 @@ function MentorEditProfilePage() {
                 });
             
             if(response.status === 200){
+                // console.log(response);
                 alert("Profile Updated successfully!");
                 setMentor(response.data.mentor);
                 navigate("/mentor-dashboard/profile");
@@ -106,6 +109,7 @@ function MentorEditProfilePage() {
                         onChange={(e) => setYearsOfExperience(e.target.value)}
                         className="text-xs sm:text-base md:text-lg w-full p-2 mt-1 border border-gray-700 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter experience in years"
+                        min="0"
                     />
                 </div>
 

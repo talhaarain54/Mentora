@@ -30,11 +30,11 @@ router.get("/get-profile",
 
 
 router.patch("/update-profile", [
-    body("name").isString().isLength({ min: 3 }).withMessage("Name must have more than 3 characters"),
+    body("name").optional().isString().isLength({ min: 3 }).withMessage("Name must have more than 3 characters"),
     body("currentPassword").isString().withMessage("Password is required"),
-    body("newPassword").optional().isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 }).withMessage("Password is not strong"),
-    body("interests").isArray().withMessage("Interests must be valid array"),
-    body("yearsOfExperience").optional().isString().withMessage("years of experience must be required"),
+    body("newPassword").optional().isStrongPassword().withMessage("New password is not strong enough"),
+    body("interests").optional().isArray().withMessage("Interests must be valid array"),
+    body("yearsOfExperience").optional().isNumeric().withMessage("years of experience must be required"),
     body("otherDegrees").optional().isArray().withMessage("Other degrees must be in the form or array"),
 ], authMentee, menteeController.updateProfile);
 

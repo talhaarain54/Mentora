@@ -110,7 +110,7 @@ module.exports.updateProfile = async (req, res) => {
         }
 
         let hashedPassword;
-        if (newPassword.trim().length === 0) {
+        if (!newPassword) {
             hashedPassword = mentor.password;
         } else {
             hashedPassword = await mentorModel.hashPassword(newPassword);
@@ -125,7 +125,8 @@ module.exports.updateProfile = async (req, res) => {
         };
 
         const updatedMentor = await mentorModel.findByIdAndUpdate(req.mentor._id, updatedData, { new: true });
-
+        console.log("updated mentor", updatedMentor);
+        
         if (!updatedMentor) {
             return res.status(400).json({ message: "Profile update failed" });
         }
