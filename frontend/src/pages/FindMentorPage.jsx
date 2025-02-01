@@ -65,7 +65,7 @@ function FindMentorPage() {
                 </button>
             </div>
             <h3 className='text-lg md:text-xl lg:text-2xl font-semibold text-center my-3'>Mentors</h3>
-            <div className='mt-5 flex flex-col sm:flex-row flex-wrap justify-center items-center'>
+            <div className='mt-5 flex flex-col gap-10 sm:flex-row flex-wrap justify-center items-center'>
                 {
                     searchedMentors && searchedMentors.map((mentor) => (
                         <MentorProfileCard mentor={mentor} key={mentor._id} />

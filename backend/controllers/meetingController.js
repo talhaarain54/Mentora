@@ -164,7 +164,7 @@ module.exports.addFeedback = async (req, res) => {
         const newNotification = await notificationModel.create({
             content: `Feedback added by the ${meeting.mentee.name} at time: ${meeting.meetingTime.toLocaleString("en-PK", { hour: "2-digit", minute: "2-digit", hour12: true, month: "short", day: "2-digit", year: "numeric" })}`,
             status: "unread",
-            user: mentor,
+            user: meeting.mentor,
             userType: "mentor",
             time: Date.now()
         });

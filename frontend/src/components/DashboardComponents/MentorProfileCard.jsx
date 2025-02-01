@@ -50,7 +50,7 @@ function MentorProfileCard({ mentor }) {
         }
     }
     return (
-        <div className='bg-gray-800 max-w-72 p-3 rounded-2xl'>
+        <div className='bg-gray-800 w-64 h-56  md:w-72 md:h-72 p-3 rounded-2xl relative'>
             <h2 className='text-base md:text-lg lg:text-xl font-semibold text-gray-100 text-center'>{mentor.name}</h2>
             <p className='text-xs md:text-base text-gray-400 text-center'>{mentor.highestDegree.degreeName + ", " + mentor.highestDegree.institute}</p>
             <p className='text-xs md:text-base text-gray-100 text-center'>{mentor.yearsOfExperience}+ Years of Experience</p>
@@ -84,7 +84,7 @@ function MentorProfileCard({ mentor }) {
                         :
                         <button
                             disabled={buttonDisabled}
-                            className={`text-xs md:text-base rounded-md px-3 py-[2px] mt-2 bg-blue-600 cursor-pointer ${buttonDisabled ? "bg-gray-950 cursor-auto" : ""}`}
+                            className={`text-xs md:text-base rounded-md px-3 py-[2px] mt-2 bg-blue-600 cursor-pointer absolute bottom-5 ${buttonDisabled ? "bg-gray-950 cursor-auto" : ""}`}
                             onClick={() => setMeetingInputOpen(true)}
                         >
                             {
