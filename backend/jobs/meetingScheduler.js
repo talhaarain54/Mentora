@@ -1,9 +1,9 @@
 const cron = require('node-cron');
 const mongoose = require('mongoose');
-const meetingModel = require("../models/meetingModel") // Import the Meeting model
+const meetingModel = require("../models/meetingModel") 
 
-// Schedule a task to run every 5 minutes
-cron.schedule('*/5 * * * *', async () => {
+// Schedule a task to run every minute
+cron.schedule('*/1 * * * *', async () => {
     console.log("Running meeting status update task...");
 
     try {
@@ -11,8 +11,8 @@ cron.schedule('*/5 * * * *', async () => {
 
         // Find meetings that are scheduled but time has passed
         const scheduledMeetings = await meetingModel.find({
-            meetingTime: { $lt: currentTime }, // Meetings whose time has passed
-            status: 'scheduled' // Only those that are still scheduled
+            meetingTime: { $lt: currentTime }, 
+            status: 'scheduled' 
         });
 
         for (let meeting of scheduledMeetings) {
@@ -24,7 +24,7 @@ cron.schedule('*/5 * * * *', async () => {
         // Find meetings that are pending but time has passed
         const pendingMeetings = await meetingModel.find({
             meetingTime: { $lt: currentTime },
-            status: 'pending' // Only those that are still pending
+            status: 'pending' 
         });
 
         for (let meeting of pendingMeetings) {
