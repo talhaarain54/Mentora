@@ -11,9 +11,10 @@ const mentorRoutes = require("./routes/mentorRoutes");
 const menteeRoutes = require("./routes/menteeRoutes");
 const meetingRoutes = require("./routes/meetingRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
+const mongoose = require('mongoose');
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"]
 }));
@@ -24,6 +25,17 @@ app.use(cookieParser());
 
 app.get("/", (req, res) => {
     res.send("Hello world");
+});
+
+app.get('/health', (req, res) => {
+  const dbState = mongoose.connection.readyState; 
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    database: dbState === 1 ? 'connected' : 'disconnected',
+    timestamp: new Date().toISOString(),
+    message: "Server is running and connected to the database."
+  });
 });
 
 app.use("/mentor", mentorRoutes);

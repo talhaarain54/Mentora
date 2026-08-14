@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MentorContext } from "../contexts/MentorContext";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import DemoCredentialsBanner from "../components/DashboardComponents/DemoCredentialsBanner";
 
 
 function MentorSignUpPage() {
@@ -113,6 +114,11 @@ function MentorSignUpPage() {
         <div className='w-full min-h-screen flex justify-center items-center bg-gray-900 py-10 px-4'>
             <div className='bg-gray-800 p-6 md:p-8 lg:p-10 rounded-2xl shadow-xl w-full max-w-4xl'>
                 <h1 className='text-2xl md:text-3xl lg:text-4xl text-blue-400 font-bold text-center mb-6'>Mentor Sign Up</h1>
+                <DemoCredentialsBanner
+                    role="Mentor"
+                    email="demo@mentor.mentora.com"
+                    password="Demo@123"
+                />
                 <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
                     <div>
                         <h3 className='text-base md:text-lg lg:text-xl font-semibold text-gray-300 mb-4'>Personal Information</h3>
