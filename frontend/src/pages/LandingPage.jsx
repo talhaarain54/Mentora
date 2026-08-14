@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/header/Header'
+import Header from '../components/Header/Header'
 import HeroSection from '../components/Landing Page Sections/HeroSection'
 import OurMissionSection from '../components/Landing Page Sections/OurMissionSection'
 import WhyChooseMentoraSection from '../components/Landing Page Sections/WhyChooseMentoraSection'
